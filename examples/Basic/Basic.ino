@@ -1,30 +1,30 @@
-/* Encoder Library - Basic Example
- * http://www.pjrc.com/teensy/td_libs_Encoder.html
- *
- * This example code is in the public domain.
- */
-
 #include "Arduino.h"
+#include "Functor.h"
+#include "Streaming.h"
 #include "EncoderFunctors.h"
 
-// Change these two numbers to the pins connected to your encoder.
-//   Best Performance: both pins have interrupt capability
-//   Good Performance: only the first pin has interrupt capability
-//   Low Performance:  neither pin has interrupt capability
-Encoder myEnc(5, 6);
-//   avoid using pins with LEDs attached
 
-void setup() {
-  Serial.begin(9600);
-  Serial.println("Basic Encoder Test:");
+EncoderFunctors encoder(3,4);
+
+void positiveHandler(const int32_t position)
+{
+  Serial << "+ " << position << "\n";
 }
 
-long oldPosition  = -999;
+void negativeHandler(const int32_t position)
+{
+  Serial << "- " << position << "\n";
+}
 
-void loop() {
-  long newPosition = myEnc.read();
-  if (newPosition != oldPosition) {
-    oldPosition = newPosition;
-    Serial.println(newPosition);
-  }
+void setup()
+{
+  Serial.begin(115200);
+  Serial << "Basic EncoderFunctors Test:" << "\n";
+
+  encoder.attachPositiveFunctor(makeFunctor((Functor1<int32_t> *)0,positiveHandler));
+  encoder.attachNegativeFunctor(makeFunctor((Functor1<int32_t> *)0,negativeHandler));
+}
+
+void loop()
+{
 }
