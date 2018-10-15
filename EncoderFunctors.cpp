@@ -7,5 +7,5 @@
 
 Encoder_internal_state_t * EncoderFunctors::interruptArgs[];
 
-Functor1<int32_t> EncoderFunctors::positive_functor_;
-Functor1<int32_t> EncoderFunctors::negative_functor_;
+// Functor1<int32_t> EncoderFunctors::positive_functor_;
+// Functor1<int32_t> EncoderFunctors::negative_functor_;
