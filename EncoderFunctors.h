@@ -66,12 +66,12 @@ typedef struct {
 	int32_t                position;
 } Encoder_internal_state_t;
 
-class Encoder
+class EncoderFunctors
 {
 public:
   EncoderFunctors() {
   }
-	Encoder(uint8_t pin1, uint8_t pin2) {
+	EncoderFunctors(uint8_t pin1, uint8_t pin2) {
     setup(pin1,pin2);
   }
   void setup(uint8_t pin1, uint8_t pin2) {
